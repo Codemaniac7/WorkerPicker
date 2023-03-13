@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    header {
+      text-align: center;
+      font-size: 36px;
+      margin-top: 5%;
+    }
+    wrapper {
+      margin: 0 auto;
+      padding: 30px;
+      max-width: 1170px;
+    }
+    .choose1 {
+      width: 250px;
+      height: 250px;
+      display: inline-block;
+      margin-left: 30%;
+      text-align: center;
+      line-height: 250px;
+      margin-top: 5%;
+      border: 2px solid #999;
+      border-radius: 125px;
+      background-color: aquamarine;
+      color: rgb(10, 100, 22);
+      cursor: pointer;
+    }
+    .choose2 {
+      width: 250px;
+      height: 250px;
+      display: inline-block;
+      margin-left: 5%;
+
+      text-align: center;
+      line-height: 250px;
+      margin-top: 5%;
+      border: 2px solid #999;
+      border-radius: 125px;
+      background-color: cornflowerblue;
+      color: rgb(0, 0, 20);
+      cursor: pointer;
+    }
+    table {
+      margin-top: 30px;
+      border: 1px solid darkolivegreen;
+      width: 100%;
+    }
+    caption {
+      padding-bottom: 20px;
+    }
+    tbody {
+      text-align: center;
+    }
+  </style>
+  <body id="body">
+    <header>당첨자는?</header>
+    <wrapper>
+      <div class="choose1">점심 근무</div>
+      <div class="choose2">저녁 근무</div>
+    </wrapper>
+  </body>
+  <script>
+    let day = ["월", "화", "수", "목", "금"];
+
+    let smTeam = [
+      "김순규",
+      "김희진",
+      "백인엽",
+      "안성진",
+      "이혜민",
+      "임경민",
+      "정우진",
+      "정승민",
+    ];
+
+    var chooseButton1 = document.querySelector(".choose1");
+    var chooseButton2 = document.querySelector(".choose2");
+    middleWorkerList = [];
+    nightWorkerList = [];
+
+    function middleWorker() {
+      middleWorkerList = [];
+      for (let i = 0; i < smTeam.length; i++) {
+        middleWorkerList.push(
+          smTeam[Math.ceil(Math.random(i) * (smTeam.length - 1))]
+        );
+      }
+      console.log(middleWorkerList);
+      row_2_data_2.innerHTML = middleWorkerList[0];
+      row_2_data_3.innerHTML = middleWorkerList[1];
+      row_2_data_4.innerHTML = middleWorkerList[2];
+      row_2_data_5.innerHTML = middleWorkerList[3];
+      row_2_data_6.innerHTML = middleWorkerList[4];
+    }
+
+    function nightWorker() {
+      nightWorkerList = [];
+      for (let i = 0; i < smTeam.length; i++) {
+        nightWorkerList.push(
+          smTeam[Math.ceil(Math.random(i) * (smTeam.length - 1))]
+        );
+      }
+
+      row_3_data_2.innerHTML = nightWorkerList[0];
+      row_3_data_3.innerHTML = nightWorkerList[1];
+      row_3_data_4.innerHTML = nightWorkerList[2];
+      row_3_data_5.innerHTML = nightWorkerList[3];
+      row_3_data_6.innerHTML = nightWorkerList[4];
+    }
+
+    chooseButton1.addEventListener("click", function () {
+      setTimeout(() => middleWorker(), 1500);
+
+      this.style.backgroundColor = "darkcyan";
+    });
+    chooseButton2.addEventListener("click", function () {
+      setTimeout(() => nightWorker(), 1500);
+
+      this.style.backgroundColor = "#149";
+    });
+
+    let table = document.createElement("table");
+    let caption = document.createElement("caption");
+    let thead = document.createElement("thead");
+    let tbody = document.createElement("tbody");
+
+    table.appendChild(caption);
+    table.appendChild(thead);
+    table.appendChild(tbody);
+
+    document.getElementById("body").appendChild(table);
+
+    caption.innerHTML = "근무표";
+
+    let row_1 = document.createElement("tr");
+    let heading_1 = document.createElement("th");
+    heading_1.innerHTML = "점심/저녁";
+    heading_1.width = "100px";
+    let heading_2 = document.createElement("th");
+    heading_2.innerHTML = day[0];
+    let heading_3 = document.createElement("th");
+    heading_3.innerHTML = day[1];
+    let heading_4 = document.createElement("th");
+    heading_4.innerHTML = day[2];
+    let heading_5 = document.createElement("th");
+    heading_5.innerHTML = day[3];
+    let heading_6 = document.createElement("th");
+    heading_6.innerHTML = day[4];
+
+    row_1.appendChild(heading_1);
+    row_1.appendChild(heading_2);
+    row_1.appendChild(heading_3);
+    row_1.appendChild(heading_4);
+    row_1.appendChild(heading_5);
+    row_1.appendChild(heading_6);
+    thead.appendChild(row_1);
+
+    let row_2 = document.createElement("tr");
+    let row_2_data_1 = document.createElement("td");
+    row_2_data_1.innerHTML = "점심";
+    let row_2_data_2 = document.createElement("td");
+
+    let row_2_data_3 = document.createElement("td");
+    let row_2_data_4 = document.createElement("td");
+    let row_2_data_5 = document.createElement("td");
+    let row_2_data_6 = document.createElement("td");
+
+    row_2.appendChild(row_2_data_1);
+    row_2.appendChild(row_2_data_2);
+    row_2.appendChild(row_2_data_3);
+    row_2.appendChild(row_2_data_4);
+    row_2.appendChild(row_2_data_5);
+    row_2.appendChild(row_2_data_6);
+    tbody.appendChild(row_2);
+
+    let row_3 = document.createElement("tr");
+    let row_3_data_1 = document.createElement("td");
+    row_3_data_1.innerHTML = "저녁";
+    let row_3_data_2 = document.createElement("td");
+    let row_3_data_3 = document.createElement("td");
+    let row_3_data_4 = document.createElement("td");
+
+    let row_3_data_5 = document.createElement("td");
+
+    let row_3_data_6 = document.createElement("td");
+
+    row_3.appendChild(row_3_data_1);
+    row_3.appendChild(row_3_data_2);
+    row_3.appendChild(row_3_data_3);
+    row_3.appendChild(row_3_data_4);
+    row_3.appendChild(row_3_data_5);
+    row_3.appendChild(row_3_data_6);
+    tbody.appendChild(row_3);
+  </script>
+</html>
